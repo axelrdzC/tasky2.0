@@ -1,16 +1,18 @@
 <nav x-data="{ open: false }" class="bg-gradient-to-r from-[#150050] via-[#1A0033] to-[#0E0026] border-b border-blue-900 shadow-lg">
-    <!-- Primary Navigation Menu -->
+    
+    <!-- navbar primaria -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
+
             <div class="flex items-center">
-                <!-- Logo -->
+                <!-- logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="text-2xl font-extrabold text-white hover:text-blue-300 transition-colors duration-300">
-                        TASKY
+                        tasky
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
+                <!-- links d navegacion -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white text-lg font-medium hover:text-blue-300 transition-colors duration-300">
                         {{ __('Inicio') }}
@@ -18,7 +20,7 @@
                 </div>
             </div>
 
-            <!-- Settings Dropdown -->
+            <!-- dropdown d opciones -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
@@ -47,7 +49,7 @@
                 </x-dropdown>
             </div>
 
-            <!-- Hamburger -->
+            <!-- menu hamburger (cuando la pantalla se hace pequena) -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-300 hover:bg-blue-600 focus:outline-none focus:bg-blue-600 focus:text-gray-300 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -59,7 +61,7 @@
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu -->
+    <!-- navbar, menu responsivo -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-blue-300 transition-colors duration-300">
@@ -87,4 +89,5 @@
             </div>
         </div>
     </div>
+
 </nav>
