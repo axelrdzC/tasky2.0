@@ -7,6 +7,12 @@
         <title>tasky - Gestión Simplificada</title>
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            .focused {
+                outline: 2px solid #ff1649; /* Borde visible */
+                background-color: rgba(175, 76, 114, 0.2); /* Fondo suave */
+            }
+        </style>
     </head>
 
     <body class="font-sans antialiased bg-gray-200 text-gray-200">
@@ -26,13 +32,13 @@
                 <nav>
                     <ul class="flex space-x-4 text-white">
                         <li>
-                            <a href="#features" id="hoverFeature"
-                            class="px-4 py-1 hover:font-black hover:border-b-2 hover:border-white transition duration-200">
+                            <a href="#features" id="hoverFeature" tabindex="2"
+                            class="focusable px-4 py-1 hover:font-black hover:border-b-2 hover:border-white transition duration-200">
                             Características
                             </a>
                         </li>
                         <li>
-                            <a href="#about" id="hoverAbout"
+                            <a href="#about" id="hoverAbout" tabindex="1"
                             class="px-4 py-1 hover:font-black hover:border-b-2 hover:border-white transition duration-200">
                             Acerca de
                             </a>
@@ -47,11 +53,13 @@
                             Hi!
                         @else
                             <a href="{{ route('login') }}"
+                            tabindex="3"
                             class="rounded-md px-4 py-1 text-white bg-blue-600 hover:bg-blue-700 transition">
                             Log in
                             </a>
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}"
+                                tabindex="4"
                                 class="rounded-md px-4 py-1 text-white bg-green-600 hover:bg-green-700 transition">
                                 Register
                                 </a>
@@ -79,11 +87,12 @@
                     @if (Route::has('login'))
                         @auth
                             <a href="{{ url('/dashboard') }}"
+                            tabindex="5"
                             class="mt-6 inline-block bg-indigo-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-indigo-700">
                                 Ir al dashboard
                             </a>
                         @else
-                            <a href="#features"
+                            <a href="#features" tabindex="6"
                             class="mt-6 inline-block bg-indigo-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-indigo-700">
                                 Descubre más
                             </a>
@@ -91,6 +100,7 @@
                     @endif
 
                     <button onclick="toggleLectura()" id="readButton"
+                    tabindex="7"
                     class="ms-2 mt-6 text-indigo-500 bg-gray-100 inline-block border border-indigo-500 px-6 py-3 rounded-lg shadow-md hover:bg-indigo-100">
                         Activar texto a voz
                     </button>
@@ -142,7 +152,7 @@
                     <p class="mt-6 leading-relaxed">
                         Diseñada pensando en estudiantes, Tasky combina herramientas poderosas con una interfaz amigable y accesible. Desde tareas individuales hasta proyectos colaborativos, lo tendrás todo organizado.
                     </p>
-                    <a href="#contact" class="mt-6 inline-block bg-indigo-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-indigo-700">
+                    <a href="#contact" tabindex="8" class="focused mt-6 inline-block bg-indigo-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-indigo-700">
                         Contáctanos
                     </a>
                 </div>
@@ -156,7 +166,16 @@
             </div>
         </footer>
 
+                <!-- MODO VOZ -->
         <script>
+
+
+            document.getElementById("readButton").addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+             document.getElementById("readButton").click(); // Simula el clic
+              }
+            });
+
             let isReading = false; // Variable para verificar si el texto está siendo leído
             let currentSpeech = null; // Variable para almacenar la lectura en curso
 
@@ -170,6 +189,7 @@
                     // Si no está leyendo, empezar la lectura
                     const textToRead = document.body.innerText;
                     // Asignar el evento de hover a los elementos
+
                     document.getElementById("hoverFeature").addEventListener("mouseenter", function() {
                         hoverLeer("hoverFeature");
                     });
@@ -227,6 +247,43 @@
 
 
         </script>
+
+<script>
+    let currentIndex = 0; // Índice del elemento actualmente enfocado
+    const focusableElements = Array.from(document.querySelectorAll("[tabindex]")); // Selecciona todos los elementos con tabindex
+
+    // Función para actualizar el foco visual
+    function updateFocus(index) {
+        focusableElements.forEach((el, i) => {
+            if (i === index) {
+                el.classList.add("focused");
+                el.focus(); // Establece el foco en el elemento
+            } else {
+                el.classList.remove("focused");
+            }
+        });
+    }
+
+    // Escuchar las teclas para navegar y activar
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowDown") {
+            currentIndex = (currentIndex + 1) % focusableElements.length; // Ir al siguiente elemento
+            updateFocus(currentIndex);
+        } else if (event.key === "ArrowUp") {
+            currentIndex = (currentIndex - 1 + focusableElements.length) % focusableElements.length; // Ir al anterior
+            updateFocus(currentIndex);
+        } else if (event.key === "Enter") {
+            const currentElement = focusableElements[currentIndex];
+            if (currentElement.tagName === "BUTTON" || currentElement.tagName === "A") {
+                currentElement.click(); // Solo activa botones o enlaces
+            }
+        }
+    });
+
+    // Establece el foco inicial
+    updateFocus(currentIndex);
+</script>
+
 
     </body>
 </html>
