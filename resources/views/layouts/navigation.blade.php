@@ -1,10 +1,11 @@
-<nav x-data="{ open: false }" class="bg-gradient-to-r from-[#150050] via-[#1A0033] to-[#0E0026] border-b border-blue-900 shadow-lg">
+<nav x-data="{ open: false }" class="bg-indigo-500 border-b border-blue-900 shadow-lg">
     
     <!-- navbar primaria -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
 
             <div class="flex items-center">
+
                 <!-- logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="text-2xl font-extrabold text-white hover:text-blue-300 transition-colors duration-300">
@@ -24,7 +25,7 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#1A0033] hover:bg-blue-600 hover:text-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition ease-in-out duration-300">
+                        <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white hover:bg-indigo-300 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-blue-500 transition ease-in-out duration-300">
                             <div>{{ Auth::user()->name }}</div>
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
