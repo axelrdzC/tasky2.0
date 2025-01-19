@@ -21,7 +21,7 @@
                     <x-application-logo class="w-10 h-10 fill-current text-blue-300" />
                     <span>tasky</span>
                 </a>
-                
+
                 <!-- links d navegacion -->
                 <nav>
                     <ul class="flex space-x-4 text-white">
@@ -46,12 +46,12 @@
                         @auth
                             Hi!
                         @else
-                            <a href="{{ route('login') }}" 
+                            <a href="{{ route('login') }}"
                             class="rounded-md px-4 py-1 text-white bg-blue-600 hover:bg-blue-700 transition">
                             Log in
                             </a>
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}" 
+                                <a href="{{ route('register') }}"
                                 class="rounded-md px-4 py-1 text-white bg-green-600 hover:bg-green-700 transition">
                                 Register
                                 </a>
@@ -78,12 +78,12 @@
                     <!-- boton principal dependiendo si hay una sesion activa -->
                     @if (Route::has('login'))
                         @auth
-                            <a href="{{ url('/dashboard') }}" 
+                            <a href="{{ url('/dashboard') }}"
                             class="mt-6 inline-block bg-indigo-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-indigo-700">
                                 Ir al dashboard
                             </a>
                         @else
-                            <a href="#features" 
+                            <a href="#features"
                             class="mt-6 inline-block bg-indigo-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-indigo-700">
                                 Descubre más
                             </a>
@@ -94,12 +94,12 @@
                     class="ms-2 mt-6 text-indigo-500 bg-gray-100 inline-block border border-indigo-500 px-6 py-3 rounded-lg shadow-md hover:bg-indigo-100">
                         Activar texto a voz
                     </button>
-                    
+
                 </div>
 
                 <!-- imagen -->
                 <div class="lg:w-1/2">
-                    <img src="{{asset('/images/organizeimagen.png') }}" alt="Organize Image" 
+                    <img src="{{asset('/images/organizeimagen.png') }}" alt="Organize Image"
                     class="rounded-lg max-w-full lg:max-w-md mx-auto">
                 </div>
             </div>
@@ -159,7 +159,7 @@
         <script>
             let isReading = false; // Variable para verificar si el texto está siendo leído
             let currentSpeech = null; // Variable para almacenar la lectura en curso
-    
+
             function toggleLectura() {
                 if (isReading) {
                     // Si está leyendo, detener la lectura
@@ -177,7 +177,7 @@
                     document.getElementById("hoverAbout").addEventListener("mouseenter", function() {
                         hoverLeer("hoverAbout");
                     });
-    
+
                     // Verificación de disponibilidad de SpeechSynthesis
                     if ('speechSynthesis' in window) {
                         currentSpeech = new SpeechSynthesisUtterance(textToRead);
@@ -185,7 +185,7 @@
                         currentSpeech.volume = 1;
                         currentSpeech.rate = 1;
                         currentSpeech.pitch = 1;
-    
+
                         // Reproducir el texto
                         window.speechSynthesis.speak(currentSpeech);
                         document.getElementById("readButton").innerText = "Desactivar texto a voz";
@@ -195,7 +195,7 @@
                         console.error("El navegador no soporta SpeechSynthesis.");
                     }
                 }
-    
+
                 // Cambia el estado de lectura
                 isReading = !isReading;
             }
