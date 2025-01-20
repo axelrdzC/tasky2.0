@@ -7,20 +7,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .focused {
-            outline: 2px solid #ff004c; /* Borde visible */
-            background-color: rgba(175, 76, 76, 0.2); /* Fondo suave */
+            outline: 2px solid #ff8fa7; /* Borde visible */
+            background-color: rgba(175, 76, 114, 0.2); /* Fondo suave */
         }
     </style>
 </head>
-<body class="bg-[rgba(246,229,210,1)] flex items-center justify-center min-h-screen">
+<body class="bg-gray-200 flex items-center justify-center min-h-screen">
     <div class="flex flex-col md:flex-row rounded-xl overflow-hidden max-w-6xl w-full h-[600px]">
         <div class="flex items-center justify-center p-14 flex-1">
-            <div class="w-full max-w-md bg-[#272207B3] p-10 rounded-xl shadow-lg">
-                <h2 class="text-center text-4xl font-bold mb-8" style="color: #E0E0E0;">LOGIN</h2>
-                <form action="{{ route('login') }}" method="POST" class="space-y-6">
+            <div class="w-full max-w-md p-10 rounded-xl">
+                <h2 class="text-4xl font-bold mb-8 text-gray-900">Iniciar sesión</h2>
+                <form action="{{ route('login') }}" method="POST" class="space-y-4">
                     @csrf
                     <div>
-                        <label for="email" class="block text-lg font-medium" style="color: #E0E0E0;">Email</label>
+                        <label for="email" class="block text-m font-medium text-gray-500">Email</label>
                         <input
                             type="email"
                             id="email"
@@ -33,7 +33,7 @@
                     </div>
 
                     <div>
-                        <label for="password" class="block text-lg font-medium" style="color: #E0E0E0;">Password</label>
+                        <label for="password" class="block text-m font-medium text-gray-500">Password</label>
                         <input
                             type="password"
                             id="password"
@@ -45,22 +45,22 @@
                         />
                     </div>
 
-                    <div class="text-center text-gray-300 text-sm">
+                    <div class="text-center text-gray-500 text-sm">
                         ¿No tienes una cuenta?
-                        <a href="{{ route('register') }}" tabindex="3"  class="text-green-400 hover:underline">Regístrate</a>
+                        <a href="{{ route('register') }}" tabindex="3"  class="text-indigo-500 hover:underline">Regístrate</a>
                     </div>
 
                     <button
                         type="submit"
                          tabindex="4"
-                        class="w-full bg-[rgba(138,183,141,1)] text-white py-3 px-6 rounded-lg hover:opacity-90 focus:ring-4 focus:ring-offset-2 text-lg font-semibold transition">
+                        class="w-full bg-indigo-500 text-white py-3 px-6 rounded-lg hover:opacity-90 focus:ring-4 focus:ring-offset-2 text-lg font-semibold transition">
                         Log In
                     </button>
                 </form>
             </div>
         </div>
 
-        <div class="flex items-center justify-center p-12 flex-1 bg-[rgba(246,229,210,1)]">
+        <div class="flex items-center justify-center p-12 flex-1">
             <img src="{{ asset('images/login.png') }}" alt="Persona trabajando" class="w-[500px] h-auto rounded-lg">
         </div>
 
