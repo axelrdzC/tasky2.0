@@ -12,14 +12,12 @@ Alpine.start();
 
 // listener para el boton de modo voz
 // Verifica si el elemento "readButton" existe antes de agregar el listener
-const readButton = document.getElementById("readButton");
-if (readButton) {
-    document.getElementById("readButton").addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-            document.getElementById("readButton").click(); // simulamos el click al hacer enter
-        }
-    });
-}    
+document.addEventListener("keydown", (event) => {
+    const readButton = document.getElementById("readButton"); // Busca el botón dinámicamente
+    if (readButton && event.key === "Enter") {
+        readButton.click();
+    }
+});  
 
 let isReading = false; // sigue leyendo?
 let currentSpeech = null; // guardar lectura en curso

@@ -2,24 +2,18 @@
     <link rel="stylesheet" href="{{ asset('css/table.css') }}">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
+    <!-- this is EL TEXTO A LEER X AUTOMATICO -->
+    <div id="textToRead" hidden>
+        Usted se encuentra en el espacio grupal, puede seleccionar alguno de sus espacios para empezar a trabajar 
+    </div>
 
-    <div class="layout">
-        <div
-            class="bg-gradient-to-b from-[#1E0579] via-[#2E1461] to-[#421F88] text-white w-72 h-full p-6 flex flex-col justify-between shadow-xl">
+    <div class="layout overflow-hidden">
+        <div class="border-r border-indigo-500 bg-white text-white w-72 h-full overflow-hidden p-6 flex flex-col justify-between shadow-xl">
             <div>
                 <!-- Logo y Título -->
-                <div class="flex items-center gap-3 mb-8">
-
-                    <h1 class="text-xl font-bold tracking-wide">Espacio Grupal</h1>
+                <div class="flex items-center gap-3 mb-8 text-indigo-500">
+                    <h1 class="readable text-xl font-extrabold tracking-wider uppercase">Espacio Grupal</h1>
                 </div>
-
-                <hr class="border-gray-600 mb-6">
-
-                <!-- Gestionar Miembros -->
-                <a href="{{ route('grupal.miembros') }}"
-                    class="flex items-center gap-3 py-3 px-4 bg-[#DB3B2D] rounded-lg mb-6 transition-all duration-200">
-                    <span class="text-sm font-medium ">Gestionar Miembros</span>
-                </a>
 
                 <!-- Espacios -->
                 <div class="space-y-4">
@@ -30,9 +24,9 @@
                                 $isAdmin = $data['isAdmin'];
                             @endphp
                             <button
-                                class="flex items-center gap-3 py-3 px-4 w-full text-left bg-[#3F3F5A] hover:bg-[#505070] rounded-lg transition-all duration-200"
+                                class="flex items-center gap-3 py-3 px-4 w-full bg-indigo-50 text-left text-indigo-500 border border-indigo-500 shadow-md hover:animate-pulse hover:shadow-lg rounded-lg transition-all duration-200"
                                 onclick="loadEspacio({{ $espacio->id }}); toggleActions({{ $espacio->id }});">
-                                <span class="text-sm font-medium">{{ $espacio->nombre }}</span>
+                                <span class="readable text-sm font-medium">{{ $espacio->nombre }}</span>
                             </button>
 
                             <!-- Acciones para Admin (ocultas por defecto) -->
@@ -43,7 +37,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                            class="flex items-center gap-2 py-2 px-3 bg-red-500 text-white rounded-lg hover:bg-red-600 w-full transition-all duration-200"
+                                            class="readable flex items-center gap-2 py-2 px-3 bg-red-500 text-white rounded-lg hover:bg-red-600 w-full transition-all duration-200"
                                             onclick="return confirm('¿Estás seguro de que deseas eliminar este espacio?')">
                                             <span class="text-sm font-medium">Eliminar</span>
                                         </button>
@@ -51,7 +45,7 @@
                                     <form action="{{ route('grupal.edit', $espacio->id) }}" method="GET"
                                         class="w-full">
                                         <button type="submit"
-                                            class="flex items-center gap-2 py-2 px-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 w-full transition-all duration-200">
+                                            class="readable flex items-center gap-2 py-2 px-3 bg-yellow-400 text-white rounded-lg hover:bg-yellow-600 w-full transition-all duration-200">
                                             <span class="text-sm font-medium">Editar</span>
                                         </button>
                                     </form>
@@ -63,19 +57,24 @@
                     @endif
                 </div>
 
-                <hr class="border-gray-600 my-6">
-
                 <!-- Botones para Crear o Unirse a un Espacio -->
                 <button type="button"
-                    class="bg-blue-500 text-white py-3 px-4 rounded-lg hover:bg-blue-600 w-full mb-4 transition-all duration-200"
+                    class="readable mt-10 bg-blue-500 text-white py-3 px-4 rounded-lg hover:bg-blue-600 w-full mb-4 transition-all duration-200"
                     onclick="openModal()">
                     + Crear Espacio
                 </button>
                 <button type="button"
-                    class="bg-green-500 text-white py-3 px-4 rounded-lg hover:bg-green-600 w-full transition-all duration-200"
+                    class="readable bg-white text-blue-500 border border-blue-500 py-3 px-4 mb-4 rounded-lg hover:bg-indigo-100 w-full transition-all duration-200"
                     onclick="openJoinModal()">
                     + Unirse a Espacio
                 </button>
+                
+                <!-- Gestionar Miembros -->
+                <a href="{{ route('grupal.miembros') }}"
+                    class="flex items-center text-center gap-3 py-2 px-4 bg-indigo-500 rounded-lg mb-6 hover:bg-indigo-700 transition-all duration-200">
+                    <span class="readable text-sm w-full font-medium ">Gestionar Miembros</span>
+                </a>
+
             </div>
             @if ($errors->any())
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -107,7 +106,7 @@
         <!-- Contenido Principal -->
         <div class="main-content p-6 bg-[#2A2A42] rounded-lg shadow-lg">
             <div id="espacio-content">
-                <p class="message text-center text-gray-400">Selecciona un espacio para ver los detalles.</p>
+                <p class="readable message text-center text-gray-400">Selecciona un espacio para ver los detalles.</p>
             </div>
 
             <br>

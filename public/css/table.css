@@ -346,10 +346,10 @@ td {
 /* Header */
 
 .message{
-  font-size: 30px;
+  font-size: 25px;
   font-weight: bold;
   text-align: center;
-  margin: 350px;
+  margin-top: 200px;
 }
 
 .task{

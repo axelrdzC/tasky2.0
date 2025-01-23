@@ -9,7 +9,7 @@
             </a>
 
             <!-- Título -->
-            <h2 class="text-xl font-bold text-gray-800 mb-4 text-center">Editar Espacio</h2>
+            <h2 class="readable text-xl font-bold text-gray-800 mb-4 text-center">Editar Espacio</h2>
 
             <!-- Formulario -->
             <form action="{{ route('espaciopersonal.update', $espacio->id) }}" method="POST" class="space-y-4">
