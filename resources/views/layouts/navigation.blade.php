@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-indigo-500 border-b border-blue-900 shadow-lg">
+<nav x-data="{ open: false }" class="sticky top-0 bg-indigo-500 shadow-lg">
     
     <!-- navbar primaria -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -8,14 +8,14 @@
             <div class="flex items-center">
                 <!-- logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="readable text-2xl font-extrabold text-white hover:text-blue-300 transition-colors duration-300">
+                    <a href="{{ route('dashboard') }}" class="readable text-2xl font-extrabold text-white hover:text-indigo-200 transition-colors duration-300">
                         tasky
                     </a>
                 </div>
 
                 <!-- links d navegacion -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="readable text-white text-lg font-medium hover:text-blue-300 transition-colors duration-300">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-white">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="readable text-white text-lg font-medium hover:text-white transition-colors duration-300">
                         {{ __('Inicio') }}
                     </x-nav-link>
                 </div>

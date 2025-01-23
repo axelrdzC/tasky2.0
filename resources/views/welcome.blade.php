@@ -20,7 +20,7 @@
         <!-- this is EL TEXTO A LEER X AUTOMATICO -->
         <div id="textToRead" hidden>
             Hola!, bienvenide a tasky, la herramienta más simple y poderosa para estudiantes que buscan organizar tareas y proyectos sin complicaciones.
-            En la barra de navegación podra encontrar atajos a la sección de características y acerca de, así como los botones para iniciar sesión o registrarse.
+            En la barra de navegación podrá encontrar atajos a la sección de características y acerca de, así como los botones para iniciar sesión o registrarse.
 
             Si se le dificulta leer, siempre puede poner el cursor sobre algún elemento y yo me encargaré de dictárselo, 
             también puede manejarse con las teclas de arriba y abajo y pulsar enter para accionar algun botón.
