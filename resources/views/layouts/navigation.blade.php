@@ -23,6 +23,14 @@
 
             <!-- Botón de texto a voz y dropdown -->
             <div class="flex items-center space-x-4">
+
+                <!-- btn de manual -->
+                <a href="{{ route('manual') }}"
+                    tabindex="7"
+                    class="readable text-indigo-500 bg-gray-100 inline-block border border-indigo-500 px-4 py-1 rounded-md hover:bg-indigo-100">
+                    ?
+                </a>
+
                 <!-- btn de text to speech -->
                 <button onclick="toggleLectura()" id="readButton"
                     tabindex="7"
