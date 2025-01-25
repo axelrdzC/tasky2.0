@@ -16,6 +16,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/manual', function () {
+    return view('manual');
+})->name('manual');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })
@@ -73,7 +78,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/{id}', [TareaGrupalController::class, 'store'])->name('tareagrupal.store');
 
         Route::get('/{id}/editar', [TareaGrupalController::class, 'edit'])->name('tareagrupal.edit');
-        Route::put('/{id}', [TareaGrupalController::class, 'update'])->name('tareagrupal.update');
+        Route::put('/{id}', action: [TareaGrupalController::class, 'update'])->name('tareagrupal.update');
 
         Route::delete('/{id}/eliminar', [TareaGrupalController::class, 'destroy'])->name('tareagrupal.destroy');
     });

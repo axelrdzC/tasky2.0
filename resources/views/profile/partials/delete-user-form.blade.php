@@ -1,20 +1,20 @@
 <section class="bg-gradient-to-r from-red-100 to-red-50 p-8 rounded-xl shadow-md border border-red-300">
     <header>
-        <h2 class="text-xl font-bold text-red-700">
-            {{ __('Delete Account') }}
+        <h2 class="readable text-xl font-bold text-red-700">
+            {{ __('Eliminar cuenta') }}
         </h2>
 
-        <p class="mt-2 text-sm text-red-600">
-            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
+        <p class="readable mt-2 text-sm text-red-600">
+            {{ __('Una vez que elimine su perfil, todos los datos relacionados seran eliminados. Antes de proceder, asegurese de tener un resplado de su informacion.') }}
         </p>
     </header>
 
     <x-danger-button
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-        class="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg px-4 py-2"
+        class="bg-red-600 hover:bg-red-900 text-white font-semibold rounded-lg mt-6 px-4 py-2"
     >
-        {{ __('Delete Account') }}
+        {{ __('Eliminar cuenta') }}
     </x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
