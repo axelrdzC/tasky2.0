@@ -14,11 +14,13 @@ use App\Models\TareaPersonalColumnas;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})
+    ->name('welcome');
 
 Route::get('/manual', function () {
     return view('manual');
-})->name('manual');
+})
+    ->name('manual');
 
 
 Route::get('/dashboard', function () {

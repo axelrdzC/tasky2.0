@@ -16,7 +16,7 @@
             <div class="flex items-center">
                 <!-- logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="readable text-2xl font-extrabold text-white hover:text-indigo-200 transition-colors duration-300">
+                    <a href="{{ route('welcome') }}" class="readable text-2xl font-extrabold text-white hover:text-indigo-200 transition-colors duration-300">
                         tasky
                     </a>
                 </div>
