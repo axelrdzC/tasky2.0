@@ -9,10 +9,10 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <style>
             .focused {
-                outline: 2px solid #ff8fa7; /* Borde visible */
-                background-color: rgba(175, 76, 114, 0.2); /* Fondo suave */
+                outline: 3px solid #ff2727; /* Borde visible */
+                background-color: hsla(0, 100%, 86%, 0.884); /* Fondo suave */
             }
-        </style>
+            </style>
     </head>
 
     <body class="font-sans antialiased bg-gray-200 text-gray-200">
@@ -22,7 +22,7 @@
             Hola!, bienvenide a tasky, la herramienta más simple y poderosa para estudiantes que buscan organizar tareas y proyectos sin complicaciones.
             En la barra de navegación podrá encontrar atajos a la sección de características y acerca de, así como los botones para iniciar sesión o registrarse.
 
-            Si se le dificulta leer, siempre puede poner el cursor sobre algún elemento y yo me encargaré de dictárselo, 
+            Si se le dificulta leer, siempre puede poner el cursor sobre algún elemento y yo me encargaré de dictárselo,
             también puede manejarse con las teclas de arriba y abajo y pulsar enter para accionar algun botón.
 
             Agradecemos su visita!
@@ -163,7 +163,7 @@
                     <p class="readable mt-6 leading-relaxed">
                         Diseñada pensando en estudiantes, Tasky combina herramientas poderosas con una interfaz amigable y accesible. Desde tareas individuales hasta proyectos colaborativos, lo tendrás todo organizado.
                     </p>
-                    <a href="#contact" tabindex="8" 
+                    <a href="#contact" tabindex="8"
                     class="readable focused mt-6 inline-block bg-indigo-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-indigo-700">
                         Contáctanos
                     </a>

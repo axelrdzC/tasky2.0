@@ -1,27 +1,36 @@
 <x-app-layout>
 
+    <style>
+        .focused {
+
+            outline: 3px solid #ff2727; /* Borde visible */
+            background-color: rgba(255, 184, 184, 0.89); /* Fondo suave */
+        }
+        </style>
+
+
     <!-- this is EL TEXTO A LEER X AUTOMATICO -->
     <div id="textToRead" hidden>
-        Usted se encuentra en el dashboard principal, puede navegar hacia su espacio personal o grupal 
+        Usted se encuentra en el dashboard principal, puede navegar hacia su espacio personal o grupal
     </div>
 
     <div class="py-12 bg-gray-100 h-full">
-        <div class="max-w-7xl mx-auto space-y-8 px-6 lg:px-8">
+        <div tabeindex="1" class="max-w-7xl mx-auto space-y-8 px-6 lg:px-8">
             <div class="readable bg-white rounded-xl shadow-md p-6 text-center">
                 <h3 class="text-4xl font-bold text-gray-700">{{ __("Bienvenido a TASKY!") }}</h3>
                 <p class="mt-2 text-lg text-gray-500">{{ __("Gestiona tareas, proyectos y más desde un lugar centralizado.") }}</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <a href="{{ route('table.index') }}" class="block">
-                    <div class="readable bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg shadow-lg p-6 text-white hover:animate-pulse transition duration-300">
+            <div  class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <a href="{{ route('table.index') }}"tabindex="7" class="block">
+                    <div  class="readable bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg shadow-lg p-6 text-white hover:animate-pulse transition duration-300" >
                         <h4 class="text-xl font-bold">Espacio Personal</h4>
                         <p class="mt-2 text-sm">Organiza tus tareas personales en un espacio dedicado.</p>
                     </div>
                 </a>
 
-                <a href="{{ route('grupal.index') }}" class="block">
-                    <div class="readable bg-gradient-to-r from-pink-500 to-pink-600 rounded-lg shadow-lg p-6 text-white hover:animate-pulse transition duration-300">
+                <a href="{{ route('grupal.index') }}" tabindex="8" class="block">
+                    <div class="readable bg-gradient-to-r from-pink-500 to-pink-600 rounded-lg shadow-lg p-6 text-white hover:animate-pulse transition duration-300" >
                         <h4 class="text-xl font-bold">Espacio Grupal</h4>
                         <p class="mt-2 text-sm">Colabora con tu equipo y mantén todo organizado.</p>
                     </div>
@@ -30,7 +39,7 @@
 
             @auth
                 @if(auth()->user()->isAdmin())
-                    <div class="readable bg-gray-50 rounded-xl shadow-md p-6">
+                    <div class="readable bg-gray-50 rounded-xl shadow-md p-6" >
                         <h3 class="text-xl font-bold text-gray-700">Panel de Administración</h3>
                         <ul class="mt-4 space-y-2">
                             <li>

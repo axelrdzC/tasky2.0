@@ -15,27 +15,27 @@
 
         <div>
             <x-input-label for="current_password" :value="__('Contraseña actual')" class="readable"/>
-            <x-text-input id="current_password" name="current_password" type="password" 
-            class="mt-1 block w-full bg-indigo-50 border border-indigo-300 rounded-md" autocomplete="current-password" />
+            <x-text-input id="current_password" name="current_password" type="password"
+            tabindex="6" class="mt-1 block w-full bg-indigo-50 border border-indigo-300 rounded-md" autocomplete="current-password" />
             <x-input-error class="mt-2" :messages="$errors->updatePassword->get('current_password')" />
         </div>
 
         <div>
             <x-input-label for="password" :value="__('Contraseña nueva')" class="readable"/>
-            <x-text-input id="password" name="password" type="password" 
-            class="mt-1 block w-full bg-indigo-50 border border-indigo-300 rounded-md" autocomplete="new-password" />
+            <x-text-input id="password" name="password" type="password"
+            tabindex="7" class="mt-1 block w-full bg-indigo-50 border border-indigo-300 rounded-md" autocomplete="new-password" />
             <x-input-error class="mt-2" :messages="$errors->updatePassword->get('password')" />
         </div>
 
         <div>
             <x-input-label for="password_confirmation" :value="__('Confirmar contraseña')" class="readable"ewq2/>
-            <x-text-input id="password_confirmation" name="password_confirmation" type="password" 
-            class="mt-1 block w-full bg-indigo-50 border border-indigo-300 rounded-md" autocomplete="new-password" />
+            <x-text-input id="password_confirmation" name="password_confirmation" type="password"
+            tabindex="8" class="mt-1 block w-full bg-indigo-50 border border-indigo-300 rounded-md" autocomplete="new-password" />
             <x-input-error class="mt-2" :messages="$errors->updatePassword->get('password_confirmation')" />
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button class="bg-indigo-600 hover:bg-indigo-900 text-white px-4 py-2 rounded-lg shadow-md">
+            <x-primary-button tabindex="9" class="bg-indigo-600 hover:bg-indigo-900 text-white px-4 py-2 rounded-lg shadow-md">
                 {{ __('Guardar cambios') }}
             </x-primary-button>
         </div>

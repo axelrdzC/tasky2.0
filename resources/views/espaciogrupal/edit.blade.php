@@ -19,7 +19,7 @@
                 <!-- Nombre -->
                 <label class="block text-sm font-medium text-gray-700">Nombre</label>
                 <input
-                    class="mt-1 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+                    tabindex="6" class="mt-1 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
                     type="text"
                     name="nombre"
                     maxlength="18"
@@ -29,7 +29,7 @@
                 <!-- Descripción -->
                 <label class="block text-sm font-medium text-gray-700">Descripción</label>
                 <input
-                    class="mt-1 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+                tabindex="7" class="mt-1 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
                     type="text"
                     name="categoria"
                     maxlength="25"
@@ -40,7 +40,7 @@
                 <div class="flex justify-end mt-6">
                     <button
                         type="submit"
-                        class="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        tabindex="8" class="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
                         Actualizar
                     </button>
                 </div>

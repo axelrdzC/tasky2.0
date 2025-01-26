@@ -35,7 +35,7 @@
                                     style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="eliminar"
+                                    <button type="submit" tabindex="6"  class="eliminar"
                                         onclick="return confirm('¿Estás seguro de que deseas eliminar este miembro del espacio?')">
                                         Eliminar miembro
                                     </button>

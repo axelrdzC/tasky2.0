@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>entre a tasky</title>
-    
+
     <style>
         .focused {
-            outline: 2px solid #ff8fa7; /* Borde visible */
-            background-color: rgba(175, 76, 114, 0.2); /* Fondo suave */
+            outline: 3px solid #ff2727; /* Borde visible */
+            background-color: hsla(0, 100%, 86%, 0.884); /* Fondo suave */
         }
-    </style>
-    
+        </style>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
@@ -24,7 +24,7 @@
     </div>
 
     <div class="flex flex-col md:flex-row rounded-xl overflow-hidden max-w-6xl w-full h-[600px]">
-        
+
         <!-- this is EL FORM -->
         <div class="flex items-center justify-center p-14 flex-1">
             <div class="w-full max-w-md p-10 rounded-xl">

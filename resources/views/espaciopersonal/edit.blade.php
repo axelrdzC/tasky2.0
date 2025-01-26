@@ -26,7 +26,7 @@
                         maxlength="18"
                         value="{{ old('nombre', $espacio->nombre) }}"
                         required
-                        class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500">
+                        tabindex="6" class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500">
                 </div>
 
                 <!-- Descripción -->
@@ -39,14 +39,14 @@
                         maxlength="25"
                         value="{{ old('categoria', $espacio->categoria) }}"
                         required
-                        class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500">
+                        tabindex="7" class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500">
                 </div>
 
                 <!-- Botón Actualizar -->
                 <div class="flex justify-end">
                     <button
                         type="submit"
-                        class="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        tabindex="8" class="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
                         Actualizar
                     </button>
                 </div>

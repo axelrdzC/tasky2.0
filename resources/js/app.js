@@ -1,53 +1,39 @@
 import './bootstrap';
-
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
-
 Alpine.start();
 
 
+// TEXTO A VOZ ------------------------
 
-// DE TEXTO A VOZ
+let isReading = false; // Verifica si está leyendo
+let currentSpeech = null; // Almacena la lectura actual
 
-// listener para el boton de modo voz
-// Verifica si el elemento "readButton" existe antes de agregar el listener
-document.addEventListener("keydown", (event) => {
-    const readButton = document.getElementById("readButton"); // Busca el botón dinámicamente
-    if (readButton && event.key === "Enter") {
-        readButton.click();
-    }
-});  
-
-let isReading = false; // sigue leyendo?
-let currentSpeech = null; // guardar lectura en curso
-
-// funcion que se encarga de leer (activar) o detener
+// Función para activar o desactivar el modo de lectura
 window.toggleLectura = function toggleLectura() {
+    const textElement = document.getElementById("textToRead");
 
-    const textElement = document.getElementById("textToRead"); // get el texto a leer
-
-    if (!textElement) { // manejamos en caso d q no exista
+    if (!textElement) {
         console.error("Elemento con ID 'textToRead' no encontrado.");
         return;
     }
 
-    const textToRead = textElement.innerText.trim(); // get texto y eliminar espacios innecesarios
+    const textToRead = textElement.innerText.trim();
 
-    if (!textToRead) { // por si esta vacie
+    if (!textToRead) {
         console.warn("No hay texto disponible para leer.");
         return;
     }
 
     if (isReading) {
-        // si ya estaba leyendo, detener la lectura
+        // Detener cualquier lectura en curso
         window.speechSynthesis.cancel();
+        isReading = false;
         document.getElementById("readButton").innerText = "Activar texto a voz";
         console.log("Lectura detenida");
     } else {
-        // si no estaba leyendo, empezar la lectura
-        
-        // verificar disponibilidad d SpeechSynthesis
+        // Iniciar la lectura si no está activa
         if ("speechSynthesis" in window) {
             currentSpeech = new SpeechSynthesisUtterance(textToRead);
             currentSpeech.lang = "es-ES";
@@ -55,85 +41,92 @@ window.toggleLectura = function toggleLectura() {
             currentSpeech.rate = 1;
             currentSpeech.pitch = 1;
 
-            // reproducir texto y cambiar el label del boton
+            // Manejar cuando la lectura termina o es cancelada
+            currentSpeech.onend = () => {
+                console.log("Lectura completada");
+                isReading = false;
+                document.getElementById("readButton").innerText = "Activar texto a voz";
+            };
+
+            currentSpeech.oncancel = () => {
+                console.log("Lectura cancelada");
+                isReading = false;
+                document.getElementById("readButton").innerText = "Activar texto a voz";
+            };
+
+            // Comenzar la lectura
             window.speechSynthesis.speak(currentSpeech);
+            isReading = true;
             document.getElementById("readButton").innerText = "Desactivar texto a voz";
             console.log("Lectura activada");
         } else {
             alert("Lo siento, la lectura por voz no está soportada en tu navegador.");
-            console.error("El navegador no soporta SpeechSynthesis.");
         }
     }
+};
 
-    // actualizar el estado de lectura
-    isReading = !isReading;
-}
+// Asignar eventos exclusivamente al botón `readButton`
+document.addEventListener("DOMContentLoaded", () => {
+    const readButton = document.getElementById("readButton");
 
-// para q solo lea una vez el elemento al q se le hace hover
-let lastHoveredElement = null;
-// Escucha global para elementos con la clase "readable"
-document.addEventListener("mouseover", (event) => {
-    if (event.target && event.target.classList.contains("readable") && event.target !== lastHoveredElement) {
-        lastHoveredElement = event.target;
-        hoverLeer(event.target); // Llama a la función para leer el texto
+    if (readButton) {
+        // Manejo específico para `Enter` en `readButton`
+        readButton.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                toggleLectura();
+                event.preventDefault(); // Evita conflictos con otros eventos
+                event.stopPropagation(); // Detiene la propagación del evento
+            }
+        });
+
+        // Manejo específico para clic en `readButton`
+        readButton.addEventListener("click", (event) => {
+            toggleLectura();
+            event.preventDefault();
+        });
     }
 });
 
-// funcion para leer elementos en los q se hace hover
-window.hoverLeer = function hoverLeer(element) {
-    if (isReading) {
-        // si esta leyendo, detenemos
-        window.speechSynthesis.cancel();
-
-        // obtenemos el texto del elemento a ser leido
-        const elementText = element.innerText.trim();
-
-        if (elementText && "speechSynthesis" in window) {
-            currentSpeech = new SpeechSynthesisUtterance(elementText);
-            currentSpeech.lang = "es-ES";
-            currentSpeech.volume = 1;
-            currentSpeech.rate = 1;
-            currentSpeech.pitch = 1;
-
-            window.speechSynthesis.speak(currentSpeech);
-            console.log("Leyendo: " + elementText);
-        } else {
-            alert("Lo siento, la lectura por voz no está soportada en tu navegador.");
-            console.error("El navegador no soporta SpeechSynthesis.");
-        }
-    }
-}
 
 
-// NAVEGACIÓN CON TECLADO
 
-let currentIndex = 0; // index del elemento actualmente enfocado
-const focusableElements = Array.from(document.querySelectorAll("[tabindex]")); // tabindex para obtener todos los elementos
+// NAVEGACIÓN CON TECLADO ------------------------
 
+let currentIndex = 0; // Índice del elemento actualmente enfocado
+const focusableElements = Array.from(document.querySelectorAll("[tabindex]"));
+
+// Actualizar el foco
 window.updateFocus = function updateFocus(index) {
     focusableElements.forEach((el, i) => {
         if (i === index) {
-            el.classList.add("focused");
-            el.focus();
+            el.classList.add("focused"); // Clase para resaltar el elemento
+            el.focus(); // Establece el foco
         } else {
-            el.classList.remove("focused");
+            el.classList.remove("focused"); // Remueve la clase del resto
         }
     });
-}
+};
 
+// Manejar eventos de teclado para navegación
 document.addEventListener("keydown", (event) => {
+    const currentElement = focusableElements[currentIndex];
+
     if (event.key === "ArrowDown") {
         currentIndex = (currentIndex + 1) % focusableElements.length;
         updateFocus(currentIndex);
+        event.preventDefault();
     } else if (event.key === "ArrowUp") {
         currentIndex = (currentIndex - 1 + focusableElements.length) % focusableElements.length;
         updateFocus(currentIndex);
+        event.preventDefault();
     } else if (event.key === "Enter") {
-        const currentElement = focusableElements[currentIndex];
-        if (currentElement.tagName === "BUTTON" || currentElement.tagName === "A") {
-            currentElement.click();
+        // Asegurarse de que no se active el botón de texto a voz si no tiene el foco
+        if (currentElement.id !== "readButton" && (currentElement.tagName === "BUTTON" || currentElement.tagName === "A")) {
+            currentElement.click(); // Ejecuta el clic en otros elementos interactivos
         }
+        event.preventDefault();
     }
 });
 
-updateFocus(currentIndex); // establecemos el foco inicial
+// Establece el foco inicial
+updateFocus(currentIndex);

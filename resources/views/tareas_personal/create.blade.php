@@ -1,14 +1,14 @@
 @extends('layouts.modales')
 
 @section('contenido')
-    
+
     <!-- this is EL TEXTO A LEER X AUTOMATICO -->
     <div id="textToRead" hidden>
-        Usted se encuentra en la creación de una tarea, escriba en los campos lo que se pide! 
+        Usted se encuentra en la creación de una tarea, escriba en los campos lo que se pide!
     </div>
 
     <!-- Botón de cerrar -->
-    <a class="absolute top-3 right-3 text-gray-400 hover:text-gray-600" href="{{ route('espaciopersonal.index') }}">
+    <a tabindex="13" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600" href="{{ route('espaciopersonal.index') }}">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
@@ -31,9 +31,9 @@
                 maxlength="15"
                 required
                 value="{{ old('nombre') }}"
-                class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                tabindex="6" class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
         </div>
-        
+
         <!-- Fechas -->
         <div class="grid grid-cols-2 gap-2">
             <!-- Fecha de inicio -->
@@ -45,7 +45,7 @@
                     name="fecha_inicio"
                     required
                     value="{{ old('fecha_inicio') }}"
-                    class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    tabindex="7" class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
             </div>
             <!-- Fecha final -->
             <div>
@@ -56,7 +56,7 @@
                     name="fecha_final"
                     required
                     value="{{ old('fecha_final') }}"
-                    class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    tabindex="8" class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
             </div>
         </div>
 
@@ -70,7 +70,7 @@
                 maxlength="50"
                 required
                 value="{{ old('descripcion') }}"
-                class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                tabindex="9" class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
         </div>
 
         <!-- Estado -->
@@ -80,7 +80,7 @@
                 id="estado"
                 name="estado"
                 required
-                class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                tabindex="10" class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
                 <option value="no iniciado" {{ old('estado') == 'no iniciado' ? 'selected' : '' }}>no iniciado</option>
                 <option value="iniciado" {{ old('estado') == 'iniciado' ? 'selected' : '' }}>iniciado</option>
                 <option value="casi por finalizar" {{ old('estado') == 'casi por finalizar' ? 'selected' : '' }}>casi por finalizar</option>
@@ -100,7 +100,7 @@
                 step="1"
                 value="{{ old('porcentaje', 0) }}"
                 required
-                class="w-full">
+                tabindex="11" class="w-full">
             <p class="text-sm text-gray-500 mt-1"><span id="valor" class="font-semibold">0</span>%</p>
         </div>
 
@@ -108,7 +108,7 @@
         <div class="flex justify-end">
             <button
                 type="submit"
-                class="readable px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                tabindex="12" class="readable px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 Guardar
             </button>
         </div>

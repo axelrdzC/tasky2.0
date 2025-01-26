@@ -2,7 +2,7 @@
 
     <!-- this is EL TEXTO A LEER X AUTOMATICO -->
     <div id="textToRead" hidden>
-        Usted se encuentra en el manual de usuario 
+        Usted se encuentra en el manual de usuario
     </div>
 
     <div class="py-12 bg-gray-100 h-full">
@@ -30,11 +30,11 @@
                     2. Ingresa tu correo electrónico y contraseña.<br>
                     3. Haz clic en "Entrar" para acceder a tu cuenta.<br>
                 </x-manual-parts>
-                
+
 
                 <!-- parte tres -->
                 <x-manual-parts key="3. Menú">
-                    En el menú principal de Tasky se tendrá de manera muy intuitiva dos secciones u 
+                    En el menú principal de Tasky se tendrá de manera muy intuitiva dos secciones u
                     opciones las cuales son para poder crear tu espacio personal
                     y la otra opción para poder crear tu espacio de trabajo.
                 </x-manual-parts>
@@ -53,7 +53,7 @@
                     - Selecciona el espacio a eliminar.<br>
                     - Da click en eliminar para eliminar el espacio personal.
                 </x-manual-parts>
-                
+
                 <!-- parte cinco -->
                 <x-manual-parts key="5. Tareas Personales">
                     Crear Tarea:<br>
@@ -68,7 +68,7 @@
                     - Elige la tarea a eliminar.<br>
                     - Da click en eliminar para eliminar la tarea personal.
                 </x-manual-parts>
-                
+
                 <!-- parte seis -->
                 <x-manual-parts key="6. Grupo de Trabajo">
                     Crear un Grupo:<br>

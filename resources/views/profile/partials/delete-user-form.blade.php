@@ -1,4 +1,10 @@
 <section class="bg-gradient-to-r from-red-100 to-red-50 p-8 rounded-xl shadow-md border border-red-300">
+    <style>
+        .focused {
+            outline: 3px solid #ff2727; /* Borde visible */
+            background-color: hsla(0, 100%, 86%, 0.884); /* Fondo suave */
+        }
+        </style>
     <header>
         <h2 class="readable text-xl font-bold text-red-700">
             {{ __('Eliminar cuenta') }}
@@ -12,6 +18,7 @@
     <x-danger-button
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+        tabindex="6"
         class="bg-red-600 hover:bg-red-900 text-white font-semibold rounded-lg mt-6 px-4 py-2"
     >
         {{ __('Eliminar cuenta') }}
@@ -36,6 +43,7 @@
                     id="password"
                     name="password"
                     type="password"
+                    tabindex="7"
                     class="mt-1 block w-full bg-red-50 border border-red-300 rounded-md focus:ring focus:ring-red-500 focus:border-red-500"
                     placeholder="{{ __('Password') }}"
                 />
@@ -43,8 +51,9 @@
             </div>
 
             <div class="mt-6 flex justify-end">
-                <x-secondary-button 
+                <x-secondary-button
                     x-on:click="$dispatch('close')"
+                    tabindex="7"
                     class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg px-4 py-2"
                 >
                     {{ __('Cancel') }}

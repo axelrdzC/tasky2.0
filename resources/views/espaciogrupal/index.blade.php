@@ -1,10 +1,17 @@
 <x-app-layout>
+
+    <style>
+        .focused {
+            outline: 3px solid #ff2727; /* Borde visible */
+            background-color: hsla(0, 100%, 86%, 0.884); /* Fondo suave */
+        }
+        </style>
     <link rel="stylesheet" href="{{ asset('css/table.css') }}">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
     <!-- this is EL TEXTO A LEER X AUTOMATICO -->
     <div id="textToRead" hidden>
-        Usted se encuentra en el espacio grupal, puede seleccionar alguno de sus espacios para empezar a trabajar 
+        Usted se encuentra en el espacio grupal, puede seleccionar alguno de sus espacios para empezar a trabajar
     </div>
 
     <div class="layout overflow-hidden">
@@ -18,34 +25,36 @@
                 <!-- Espacios -->
                 <div class="space-y-4">
                     @if ($espacios->isNotEmpty())
-                        @foreach ($espacios as $data)
+                        @foreach ($espacios as $index => $data)
                             @php
                                 $espacio = $data['espacio'];
                                 $isAdmin = $data['isAdmin'];
                             @endphp
                             <button
                                 class="flex items-center gap-3 py-3 px-4 w-full bg-indigo-50 text-left text-indigo-500 border border-indigo-500 shadow-md hover:animate-pulse hover:shadow-lg rounded-lg transition-all duration-200"
-                                onclick="loadEspacio({{ $espacio->id }}); toggleActions({{ $espacio->id }});">
+                                onclick="loadEspacio({{ $espacio->id }}); toggleActions({{ $espacio->id }});"
+                                onkeydown="handleKeydown(event, {{ $espacio->id }})"
+                                tabindex="{{ $index + 1 }}"> <!-- tabindex añadido aquí -->
                                 <span class="readable text-sm font-medium">{{ $espacio->nombre }}</span>
                             </button>
 
                             <!-- Acciones para Admin (ocultas por defecto) -->
                             @if ($isAdmin)
                                 <div id="actions-{{ $espacio->id }}" class="hidden flex gap-2 mt-2">
-                                    <form action="{{ route('grupal.destroy', $espacio->id) }}" method="POST"
-                                        class="w-full">
+                                    <form action="{{ route('grupal.destroy', $espacio->id) }}" method="POST" class="w-full">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
                                             class="readable flex items-center gap-2 py-2 px-3 bg-red-500 text-white rounded-lg hover:bg-red-600 w-full transition-all duration-200"
-                                            onclick="return confirm('¿Estás seguro de que deseas eliminar este espacio?')">
+                                            onclick="return confirm('¿Estás seguro de que deseas eliminar este espacio?')"
+                                            tabindex="{{ $index + 2 }}"> <!-- tabindex para el botón eliminar -->
                                             <span class="text-sm font-medium">Eliminar</span>
                                         </button>
                                     </form>
-                                    <form action="{{ route('grupal.edit', $espacio->id) }}" method="GET"
-                                        class="w-full">
+                                    <form action="{{ route('grupal.edit', $espacio->id) }}" method="GET" class="w-full">
                                         <button type="submit"
-                                            class="readable flex items-center gap-2 py-2 px-3 bg-yellow-400 text-white rounded-lg hover:bg-yellow-600 w-full transition-all duration-200">
+                                            class="readable flex items-center gap-2 py-2 px-3 bg-yellow-400 text-white rounded-lg hover:bg-yellow-600 w-full transition-all duration-200"
+                                            tabindex="{{ $index + 3 }}"> <!-- tabindex para el botón editar -->
                                             <span class="text-sm font-medium">Editar</span>
                                         </button>
                                     </form>
@@ -60,18 +69,19 @@
                 <!-- Botones para Crear o Unirse a un Espacio -->
                 <button type="button"
                     class="readable mt-10 bg-blue-500 text-white py-3 px-4 rounded-lg hover:bg-blue-600 w-full mb-4 transition-all duration-200"
-                    onclick="openModal()">
+                    onclick="openModal()" tabindex="{{ count($espacios) + 1 }}"> <!-- tabindex para el botón Crear -->
                     + Crear Espacio
                 </button>
                 <button type="button"
                     class="readable bg-white text-blue-500 border border-blue-500 py-3 px-4 mb-4 rounded-lg hover:bg-indigo-100 w-full transition-all duration-200"
-                    onclick="openJoinModal()">
+                    onclick="openJoinModal()" tabindex="{{ count($espacios) + 2 }}"> <!-- tabindex para el botón Unirse -->
                     + Unirse a Espacio
                 </button>
-                
+
                 <!-- Gestionar Miembros -->
                 <a href="{{ route('grupal.miembros') }}"
-                    class="flex items-center text-center gap-3 py-2 px-4 bg-indigo-500 rounded-lg mb-6 hover:bg-indigo-700 transition-all duration-200">
+                    class="flex items-center text-center gap-3 py-2 px-4 bg-indigo-500 rounded-lg mb-6 hover:bg-indigo-700 transition-all duration-200"
+                    tabindex="{{ count($espacios) + 3 }}"> <!-- tabindex para el enlace Gestionar Miembros -->
                     <span class="readable text-sm w-full font-medium ">Gestionar Miembros</span>
                 </a>
 
@@ -94,13 +104,25 @@
 
 
 
+
         <script>
+
+function handleKeydown(event, espacioId) {
+            if (event.key === 'Enter') {
+            loadEspacio(espacioId);
+            toggleActions(espacioId);
+            }
+                }
             function toggleActions(id) {
+
                 const actions = document.getElementById(`actions-${id}`);
                 if (actions) {
                     actions.classList.toggle('hidden');
                 }
             }
+
+
+
         </script>
 
         <!-- Contenido Principal -->
@@ -206,7 +228,7 @@
     <div class="max-w-md w-full bg-white rounded-lg shadow-xl p-6 relative">
         <!-- Botón de cerrar -->
         <button
-            class="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
+        tabindex="13" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
             onclick="document.getElementById('joinEspacioModal').classList.add('hidden')">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -228,14 +250,14 @@
                     id="id_espacio"
                     name="id_espacio"
                     required
-                    class="mt-1 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500">
+                    tabindex="15" class="mt-1 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500">
             </div>
 
             <!-- Botón Unirse -->
             <div class="flex justify-end">
                 <button
                     type="submit"
-                    class="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    tabindex="16" class="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
                     Unirse
                 </button>
             </div>
@@ -352,7 +374,7 @@
     <div class="max-w-md w-full bg-white rounded-lg shadow-xl p-6 relative">
         <!-- Botón de cerrar -->
         <button
-            class="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
+        tabindex="6" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
             onclick="document.getElementById('crearEspacioModal').classList.add('hidden')">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -375,7 +397,7 @@
                     name="nombre"
                     maxlength="18"
                     required
-                    class="mt-1 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    tabindex="7" class="mt-1 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
             </div>
 
             <!-- Descripción -->
@@ -387,20 +409,20 @@
                     name="categoria"
                     maxlength="25"
                     required
-                    class="mt-1 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    tabindex="8" class="mt-1 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
             </div>
 
             <!-- Botón Guardar -->
             <div class="flex justify-end">
                 <button
                     type="submit"
-                    class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    tabindex="9" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     Guardar
                 </button>
             </div>
         </form>
 
- 
+
     </div>
 </div>
 
@@ -418,5 +440,5 @@
 </script>
 
 
-    
+
 </x-app-layout>

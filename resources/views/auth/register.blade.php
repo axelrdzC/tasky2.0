@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>registrese</title>
-
     <style>
         .focused {
-            outline: 2px solid #ff8fa7; /* Borde visible */
-            background-color: rgba(175, 76, 114, 0.2); /* Fondo suave */
+            outline: 3px solid #ff2727; /* Borde visible */
+            background-color: hsla(0, 100%, 86%, 0.884); /* Fondo suave */
         }
-    </style>
-    
+        </style>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
@@ -43,10 +42,10 @@
                             <x-text-input id="name" name="name" type="text" :value="old('name')" maxlength="20" required autofocus
                                 autocomplete="name"
                                 tabindex="1"
-                                class="mt-1 block w-full px-2 py-2 bg-white border border-gray-300 rounded-lg shadow-sm text-sm" />
+                                class="focused mt-1 block w-full px-2 py-2 bg-white border border-gray-300 rounded-lg shadow-sm text-sm" />
                             <x-input-error :messages="$errors->get('name')"  class="mt-1" />
                         </div>
-    
+
                         <div>
                             <x-input-label for="apellidos" :value="__('Apellidos')" class="readable block text-m font-medium text-gray-500"/>
                             <x-text-input id="apellidos" name="apellidos" type="text" :value="old('apellidos')" maxlength="15" required
@@ -66,7 +65,7 @@
                                 class="mt-1 block w-full px-2 py-2 bg-white border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 shadow-sm text-sm" />
                             <x-input-error :messages="$errors->get('user_name')" class="mt-1" />
                         </div>
-    
+
                         <div>
                             <x-input-label for="email" :value="__('Email')" class="readable block text-m font-medium text-gray-500"/>
                             <x-text-input id="email" name="email" type="email" :value="old('email')" maxlength="62" required
@@ -86,7 +85,7 @@
                                 class="mt-1 block w-full px-2 py-2 bg-white border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 shadow-sm text-sm" />
                             <x-input-error :messages="$errors->get('password')" class="mt-1" />
                         </div>
-    
+
                         <div>
                             <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="readable block text-m font-medium text-gray-500"/>
                             <x-text-input id="password_confirmation" name="password_confirmation" type="password" required
@@ -115,7 +114,7 @@
                     class="readable w-full mt-4 text-indigo-500 py-2 px-4 bg-gray-100 border border-indigo-500 rounded-lg shadow-md hover:bg-indigo-100">
                     Activar texto a voz
                 </button>
-                
+
             </div>
         </div>
 
