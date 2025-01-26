@@ -42,4 +42,5 @@
             @endauth
         </div>
     </div>
+    
 </x-app-layout>
